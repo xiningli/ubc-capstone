@@ -1,0 +1,51 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{pdfpages}
+\usepackage[legalpaper, portrait, margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{minted}
+\usepackage{amsmath}
+
+\author{Xining Li, Debashis Kayal}
+\title {Capstone report}
+
+\begin{document}
+\maketitle
+
+\section{Motivation}
+
+The performance of any classifier, or for that matter any machine learning task, depends crucially on the quality of the available data. 
+
+
+In particular, existing machine learning algorithms are trying to find function within the hypothesis space that can approximate the following formulas. 
+
+\begin{equation}
+    f^*(x) = {\mathrm {argmax}}_{Y=y} P (Y=y|X=x)
+\end{equation}
+
+The above formula does not address the existence of mislabeled data. Therefore, any classifier's performance will be harmed by noise in dataset labels, which is to be anticipated; the relevant question is by how much? 
+
+In this project, we will be investigating the performance of ensemble learning algorithms with mislabeled data. We will be exploring different datasets, different machine learning algorithms, and different machine learning approaches; we will be juxtaposing training data without mislabeling and with mislabeling under the combinations of these. 
+
+\section{MINST Dataset}
+
+The MNIST database of handwritten digits, available from this page, has a training set of 60,000 examples, and a test set of 10,000 examples. 
+
+\inputminted[firstline=16,lastline=18,frame=single,framesep=10pt]{python}{simple-example/main.py}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth/2]{report-resources/simple-example/simple-minst-sample-1.pdf}
+    \caption{MINST data handwriting example}
+    \label{fig:let1}
+\end{figure}
+
+The Figure \ref{fig:let1} is a letter 1 in the MINST dataset. 
+
+\section{Without Data Mislabeling}
+
+
+\end{document}
+
+
