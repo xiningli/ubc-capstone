@@ -1,0 +1,1 @@
+pdflatex -synctex=1 -shell-escape -interaction=nonstopmode --output-dir build proposal.tex

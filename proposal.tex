@@ -1,0 +1,105 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{pdfpages}
+\usepackage[legalpaper, portrait, margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{minted}
+\usepackage{amsmath}
+
+\author{Xining Li, Debashis Kayal}
+\title {Proposal}
+
+\begin{document}
+\maketitle
+
+\section{Motivation}
+
+The performance of any classifier, or for that matter any machine learning task, depends crucially on the quality of the available data. 
+
+
+In particular, existing machine learning algorithms are trying to find function within the hypothesis space that can approximate the following formulas. 
+
+\begin{equation}
+    f^*(x) = {\mathrm {argmax}}_{Y=y} P (Y=y|X=x)
+\end{equation}
+
+The above formula does not address the existence of mislabeled data. Therefore, any classifier's performance will be harmed by noise in dataset labels, which is to be anticipated; the relevant question is by how much? 
+In this project, we will be investigating the performance of ensemble learning algorithms with mislabeled data. We will be exploring different datasets, different machine learning algorithms, and different machine learning approaches; we will be juxtaposing training data without mislabeling and with mislabeling under the combinations of these. 
+
+\section{Approaches}
+
+We will use the following frameworks to build our models. 
+
+\begin{itemize}
+    \item SageMaker
+    \item Keras
+    \item Numpy
+    \item Java
+    \item MxNet
+\end{itemize}
+
+\section{Datasets}
+
+We will use the following dataset to validate our assumptions
+
+\begin{itemize}
+    \item MNIST
+    \item Wine Quality
+    \item CIFAR10
+    \item CIFAR100
+\end{itemize}
+
+\section{Machine Learning Models}
+
+We combine the following machine learning models to support our research
+
+
+\begin{itemize}
+    \item Convolutional Neural Network
+    \item Random Forest
+    \item Generalized Linear Models 
+\end{itemize}
+
+
+\section{Resembling Techniques}
+
+We combine the following resembling techniques models as our research
+
+
+\begin{itemize}
+    \item Voting
+    \item Bagging
+    \item Boosting
+    \item Averaging
+    \item Stacking
+\end{itemize}
+
+\section{Incorrectly Labeled Rates}
+
+We will use different incorrectly labeled rates to find the difference between individual machine learning model without incorrectly labeled data, machine learning models applied resembling techniques without incorrectly labeled data, individual machine learning model with incorrectly labeled data, machine learning models applied resembling techniques with incorrectly labeled data. Here are the following incorrectly labeled rates. 
+
+
+\begin{itemize}
+    \item 0.1\%
+    \item 0.2\%
+    \item 0.5\%
+    \item 1\%
+    \item 2\%
+\end{itemize}
+
+
+\section{Tasks Assignment}
+
+\section{Collaborated}
+Establishing models, modularize the frameworks.
+
+\subsection{Xining Li}
+MNIST dataset and Wine Quality dataset. 
+
+\subsection{Debashis Kayal}
+CIFAR10 dataset and CIFAR100 dataset. 
+
+
+\end{document}
+
