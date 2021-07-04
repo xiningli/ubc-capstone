@@ -12,13 +12,13 @@ import matplotlib.pyplot as plt
 import os
 
 dirname = os.path.dirname(__file__)
-os.makedirs(os.path.join(dirname, "../report-resources/simple-example"), exist_ok=True)
+os.makedirs(os.path.join(dirname, "../report-resources/minst"), exist_ok=True)
 train = pd.read_csv(os.path.join(dirname, "../all-data/minst/train.csv"))
 y_train, x_train = train.label.values, train.drop("label", axis=1).values
 plt.imshow(x_train[0].reshape(28, 28), interpolation="gaussian")
 
 
-plt.savefig(os.path.join(dirname, "../report-resources/simple-example/simple-minst-sample-1.pdf"))  
+plt.savefig(os.path.join(dirname, "../report-resources/minst/simple-minst-sample-1.pdf"))  
 
 
 x_train, x_validate, y_train, y_validate = train_test_split(x_train, y_train, random_state=1643)
