@@ -15,8 +15,7 @@
 
 \section{Motivation}
 
-The performance of any classifier, or for that matter any machine learning task, depends crucially on the quality of the available data. 
-
+The performance of any classifier, or for that matter any machine learning task, depends crucially on the quality of the available data. However prediction quality is also dependent on the model itself. 
 
 In particular, existing machine learning algorithms are trying to find function within the hypothesis space that can approximate the following formulas. 
 
@@ -25,7 +24,10 @@ In particular, existing machine learning algorithms are trying to find function 
 \end{equation}
 
 The above formula does not address the existence of mislabeled data. Therefore, any classifier's performance will be harmed by noise in dataset labels, which is to be anticipated; the relevant question is by how much? 
-In this project, we will be investigating the performance of ensemble learning algorithms with mislabeled data. We will be exploring different datasets, different machine learning algorithms, and different machine learning approaches; we will be juxtaposing training data without mislabeling and with mislabeling under the combinations of these. 
+
+In this project, we will be investigating the performance improvement of ensemble learning algorithms with mislabeled data. We will be exploring different datasets, different machine learning algorithms, and different machine learning approaches; we will be juxtaposing training data without mislabeling and with mislabeling under the combinations of these.The aim is to investigate and establish to what degree ensemble learning are resilient to these faults in the data sets.  
+
+Can a combination of algorithms (ensemble) improve the prediction quality and thus be more fault-resilient while working on faulty data sets?   
 
 \section{Approaches}
 
@@ -36,7 +38,7 @@ We will use the following frameworks to build our models.
     \item Keras
     \item Numpy
     \item Java
-	\item Python3.9    
+    \item Python    
     \item MxNet
 \end{itemize}
 
@@ -93,7 +95,7 @@ We will use different incorrectly labeled rates to find the difference between i
 \section{Tasks Assignment}
 
 \section{Collaborated}
-Establishing models, modularize the frameworks.
+Establishing models, modularize the frameworks, identify use-cases (2 to 3).
 
 \subsection{Xining Li}
 MNIST dataset and Wine Quality dataset. 
