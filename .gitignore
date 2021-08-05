@@ -4,3 +4,5 @@ report-resources
 venv
 _minted-report
 build
+*.ipynb
+*/__pycache__/
