@@ -56,6 +56,25 @@ The following algorithms run on the data without mislabeling.
 \end{figure}
 
 
+\section{With Data Mislabeling}
+
+We use the following data to intentionally create misslabeled data
+
+\inputminted[frame=single,framesep=10pt]{python}{minst/do_miss_label.py}
+
+
+\inputminted[firstline=66,lastline=104,frame=single,framesep=10pt]{python}{minst/main.py}
+
+
+\begin{figure}[H]
+    \centering
+    \input{report-resources/minst/misslabeled_f1_scores.tex}
+    \caption{Misslabled data F1 Scores Table}
+\end{figure}
+
+
+
+
 \end{document}
 
 

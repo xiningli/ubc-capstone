@@ -62,6 +62,51 @@ simple_comparison_result = pd.DataFrame(dict(
 with open(os.path.join(dirname, "../report-resources/minst/f1_scores.tex"), 'w') as f:
     print(simple_comparison_result.to_latex(index=False), file=f)
 
+
+from do_miss_label import do_miss_label
+
+y_train_miss_label = do_miss_label(y_train, 0.2)
+count = 0
+for i in range(len(y_train)):
+    if y_train[i]!=y_train_miss_label[i]:
+        count+=1
+print("miss labeled count")
+print(count)
+
+lg_clf_misslabeled = LogisticRegression(solver='lbfgs', max_iter=1000)
+lg_clf_misslabeled.fit(x_train, y_train_miss_label)
+logistic_regression_misslabeled_validate_predict = lg_clf_misslabeled.predict(x_validate)
+logistic_regression_f1_score_misslabeled = f1_score(y_validate, 
+                                        logistic_regression_misslabeled_validate_predict, 
+                                        average='weighted')
+print(logistic_regression_f1_score_misslabeled)
+
+decision_tree_clf_misslabeled = tree.DecisionTreeClassifier()
+decision_tree_clf_misslabeled.fit(x_train, y_train_miss_label)
+decision_tree_misslabeled_validate_predict = decision_tree_clf_misslabeled.predict(x_validate)
+decision_tree_f1_score_misslabeled = f1_score(y_validate, 
+                                  decision_tree_misslabeled_validate_predict, 
+                                  average='weighted')
+print(decision_tree_f1_score_misslabeled)
+
+random_forest_clf_misslabeled = RandomForestClassifier(n_jobs=-1)
+random_forest_clf_misslabeled.fit(x_train, y_train_miss_label)
+random_forest_misslabeled_validate_predict = random_forest_clf_misslabeled.predict(x_validate)
+random_forest_misslabeled_f1_score = f1_score(y_validate, 
+                                              random_forest_misslabeled_validate_predict, 
+                                              average='weighted')
+print(random_forest_misslabeled_f1_score)
+
+misslabeled_comparison_result = pd.DataFrame(dict(
+    logistic_regression=[logistic_regression_f1_score_misslabeled],
+    decision_tree=[decision_tree_f1_score_misslabeled],
+    random_forest=[random_forest_misslabeled_f1_score]))
+
+with open(os.path.join(dirname, "../report-resources/minst/misslabeled_f1_scores.tex"), 'w') as f:
+    print(misslabeled_comparison_result.to_latex(index=False), file=f)
+
+
+
 # **Considering the models suggested to build the ensemble:**
 # rf_clf = RandomForestClassifier(n_jobs=-1)
 
