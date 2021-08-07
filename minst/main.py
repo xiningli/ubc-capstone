@@ -54,10 +54,27 @@ random_forest_f1_score = f1_score(
     average='weighted')
 print(random_forest_f1_score)
 
+from sklearn.ensemble import AdaBoostClassifier
+ada_clf = AdaBoostClassifier(random_state=0)
+ada_clf.fit(x_train, y_train)
+ada_validate_predict = ada_clf.predict(x_validate)
+ada_f1_score = f1_score(y_validate, ada_validate_predict, average='weighted')
+print(ada_f1_score)
+
+import xgboost as xgb
+xgb_clf = xgb.XGBRegressor(objective="multi:softmax", num_class=10, random_state=42)
+xgb_clf.fit(x_train, y_train)
+xgb_validate_predict = xgb_clf.predict(x_validate)
+xgb_f1_score = f1_score(y_validate, xgb_validate_predict, average='weighted')
+print(xgb_f1_score)
+
 simple_comparison_result = pd.DataFrame(dict(
     logistic_regression=[logistic_regression_f1_score],
     decision_tree=[decision_tree_f1_score],
-    random_forest=[random_forest_f1_score]))
+    random_forest=[random_forest_f1_score],
+    ada = [ada_f1_score],
+    xgb = [xgb_f1_score]
+    ))
 
 with open(os.path.join(dirname, "../report-resources/minst/f1_scores.tex"), 'w') as f:
     print(simple_comparison_result.to_latex(index=False), file=f)
@@ -65,7 +82,7 @@ with open(os.path.join(dirname, "../report-resources/minst/f1_scores.tex"), 'w')
 
 from do_miss_label import do_miss_label
 
-y_train_miss_label = do_miss_label(y_train, 0.2)
+y_train_miss_label = do_miss_label(y_train, 0.3)
 count = 0
 for i in range(len(y_train)):
     if y_train[i]!=y_train_miss_label[i]:
@@ -97,10 +114,28 @@ random_forest_misslabeled_f1_score = f1_score(y_validate,
                                               average='weighted')
 print(random_forest_misslabeled_f1_score)
 
+import xgboost as xgb
+xgb_clf_misslabeled = xgb.XGBRegressor(objective="multi:softmax", num_class=10, random_state=42)
+xgb_clf_misslabeled.fit(x_train, y_train_miss_label)
+xgb_validate_predict_misslabeled = xgb_clf_misslabeled.predict(x_validate)
+xgb_f1_score_misslabeled = f1_score(y_validate, xgb_validate_predict_misslabeled, average='weighted')
+print(xgb_f1_score_misslabeled)
+
+from sklearn.ensemble import AdaBoostClassifier
+ada_clf_misslabeled = AdaBoostClassifier(random_state=0)
+ada_clf_misslabeled.fit(x_train, y_train_miss_label)
+ada_validate_predict_misslabeled = ada_clf_misslabeled.predict(x_validate)
+ada_f1_score_misslabeled = f1_score(y_validate, ada_validate_predict_misslabeled, average='weighted')
+print(ada_f1_score_misslabeled)
+
+
 misslabeled_comparison_result = pd.DataFrame(dict(
     logistic_regression=[logistic_regression_f1_score_misslabeled],
     decision_tree=[decision_tree_f1_score_misslabeled],
-    random_forest=[random_forest_misslabeled_f1_score]))
+    random_forest=[random_forest_misslabeled_f1_score],
+    ada = [ada_f1_score_misslabeled],
+    xgb = [xgb_f1_score_misslabeled]
+    ))
 
 with open(os.path.join(dirname, "../report-resources/minst/misslabeled_f1_scores.tex"), 'w') as f:
     print(misslabeled_comparison_result.to_latex(index=False), file=f)
