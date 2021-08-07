@@ -115,10 +115,13 @@ random_forest_misslabeled_f1_score = f1_score(y_validate,
 print(random_forest_misslabeled_f1_score)
 
 import xgboost as xgb
-xgb_clf_misslabeled = xgb.XGBRegressor(objective="multi:softmax", num_class=10, random_state=42)
+xgb_clf_misslabeled = xgb.XGBRegressor(objective="multi:softmax", 
+    num_class=10, random_state=42)
 xgb_clf_misslabeled.fit(x_train, y_train_miss_label)
 xgb_validate_predict_misslabeled = xgb_clf_misslabeled.predict(x_validate)
-xgb_f1_score_misslabeled = f1_score(y_validate, xgb_validate_predict_misslabeled, average='weighted')
+xgb_f1_score_misslabeled = f1_score(y_validate, 
+    xgb_validate_predict_misslabeled, 
+    average='weighted')
 print(xgb_f1_score_misslabeled)
 
 from sklearn.ensemble import AdaBoostClassifier
