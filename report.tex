@@ -7,7 +7,7 @@
 \usepackage{minted}
 \usepackage{amsmath}
 
-\author{Xining Li}
+\author{Xining Li, Debashis Kayal}
 \title {Ensemble Learning Report}
 
 \begin{document}
@@ -34,7 +34,7 @@ The MNIST database of handwritten digits, available from this page, has a traini
 
 \inputminted[firstline=16,lastline=20,frame=single,framesep=10pt]{python}{minst/main.py}
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth/2]{report-resources/minst/simple-minst-sample-1.pdf}
     \caption{MINST data handwriting example}
@@ -43,7 +43,7 @@ The MNIST database of handwritten digits, available from this page, has a traini
 
 The Figure \ref{fig:let1} is a letter 1 in the MINST dataset. 
 
-\section{Without Data Mislabeling}
+\subsection{Without Data Mislabeling}
 
 The following algorithms run on the data without mislabeling. 
 
@@ -56,7 +56,7 @@ The following algorithms run on the data without mislabeling.
 \end{figure}
 
 
-\section{With Data Mislabeling}
+\subsection{With Data Mislabeling}
 
 We use the following data to intentionally create misslabeled data
 
@@ -72,7 +72,53 @@ We use the following data to intentionally create misslabeled data
     \caption{Misslabled data F1 Scores Table}
 \end{figure}
 
+\section{The CIFAR-10 dataset}
+The CIFAR-10 dataset consists of 60000 32x32 colour images in 10 classes, with 6000 images per class. There are 50000 training images and 10000 test images.
 
+The dataset is divided into five training batches and one test batch, each with 10000 images. The test batch contains exactly 1000 randomly-selected images from each class. The training batches contain the remaining images in random order, but some training batches may contain more images from one class than another. Between them, the training batches contain exactly 5000 images from each class.
+
+Here are the classes in the dataset, as well as 10 random images from each:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth/2]{report-resources/cifar-10-images/show_labels.png}
+    \caption{CFAR10 data example}
+\end{figure}
+
+CFAR10 is a more complicated dataset, and we will be using the CNN for the feature extraction. 
+
+After the feature extraction, we will be using the following ways for the classification. 
+\begin{itemize}
+    \item Softmax
+    \item Random Forest
+\end{itemize}
+
+\subsubsection{Without Data Mislabeling}
+
+\inputminted[frame=single,framesep=10pt]{python}{cifar10/main.py}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{rrrrr}
+        CNN &  CNN+RandomForest   \\
+        0.7885768705224767 &       0.8059692064910149  \\
+    \end{tabular}
+\end{table}
+
+\subsubsection{With Data Mislabeling}
+
+We applied 30\% of mislabeled data. 
+
+\inputminted[firstline=32,lastline=54,frame=single,framesep=10pt]{python}{cifar10-mislabeled/main.py}
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{rrrrr}
+        CNN &  CNN+RandomForest   \\
+        0.7371853465743461 &       0.7546625150853542  \\
+    \end{tabular}
+\end{table}
 
 
 \end{document}
