@@ -11,7 +11,7 @@
 
 \author{Xining Li, Debashis Kayal}
 \title {Ensemble Learning Report}
-
+\date{}
 \begin{document}
 \maketitle
 
@@ -79,14 +79,16 @@ Ensemble method is the machine learning technique that involves combining severa
 
 \section{Different Popular Techniques of Ensemble Learning}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=8cm]{report-imgs/img1.jpeg}
-    \caption{Different Popular Techniques of Ensemble Learning}
-    \label{DifferentPopularTechniquesOfEnsembleLearning}
-\end{figure}
+Popular ensemble learning models include
 
-The \autoref{DifferentPopularTechniquesOfEnsembleLearning} shows different popular techniques of ensemble learning. 
+\begin{itemize}
+    \item Random Forest: Selecting subset of traning data and features and build decision trees. 
+    \item Bagging: Random sample of data in a training set is selected with replacement
+    \item Boosting: Building models in sequence, and minimizing the errors by combining a set of weak learners into a strong learners. 
+    \item Gradient Boosting: generating a prediction model from an ensemble of weak models in sequence (typically decision trees)
+    \item XGBoost: regularizing gradient boosting \cite{enwiki:1035329027}
+\end{itemize}
+
 
 \subsection{Bagging: Bootstrap Aggregating}
 
@@ -111,8 +113,8 @@ Both averaging and voting can be simple or weighted if relevant weights are avai
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=8cm]{report-imgs/bagging.png}
-    \caption{Bagging}
+    \includegraphics[width=8cm]{report-imgs/Ensemble_Bagging.png}
+    \caption{Bagging \cite{wiki:bagging}}
     \label{bagging}
 \end{figure}
 
@@ -123,8 +125,8 @@ Random Forests is a bagging method where deep trees are trained on bootstrap sam
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=8cm]{report-imgs/random-forest.png}
-    \caption{Random forest is a bagging method that combines bagging with random feature subset selection}
+    \includegraphics[width=8cm]{report-imgs/randomForest.png}
+    \caption{Random forest is a bagging method that combines bagging with random feature subset selection \cite{randomForest}}
     \label{randomForest}
 \end{figure}
 
@@ -140,31 +142,17 @@ In Adaboost - the weight attached to each observation is changed while in Gradie
 \begin{figure}[H]
     \centering
     \includegraphics[width=8cm]{report-imgs/adaboost.png}
-    \caption{Adaptive Boosting or Adaboost}
+    \caption{Adaptive Boosting or Adaboost \cite{wikiEnsemble}}
     \label{adaboost}
 \end{figure}
 
 Gradient boosting does not modify the sample distribution as weak learners train on the remaining residual errors  (i.e, pseudo-residuals) of a previous learner. By training on the residuals of the model, is an alternative means to give more importance to misclassified observations.
 
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=8cm]{report-imgs/gradientboost.png}
-    \caption{Gradient boosting}
-    \label{gradientboost}
-\end{figure}
-
-
 
 Xtreme gradient boosting or XGB is a decision-tree-based ensemble Machine Learning algorithm that uses a gradient boosting framework. XGBoost is basically designed to enhance the performance and speed of a Machine Learning model. In prediction problems involving unstructured data (images, text, etc.), artificial neural networks tend to outperform all other algorithms or frameworks \cite{mujtaba_2021}. Like gradient boosting XGBoost also handles missing values in the dataset.  
 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=8cm]{report-imgs/xgb.png}
-    \caption{XGB steps}
-    \label{xgb}
-\end{figure}
+A generic unregularized xgboost algorithm is described clearly in \cite{enwiki:1035329027}
 
 \section{Objectives of this Paper}
 
@@ -220,6 +208,21 @@ We use the following data to intentionally create misslabeled data
     \caption{Misslabled data F1 Scores Table}
 \end{figure}
 
+\subsubsection{Aggregated View}
+
+
+\begin{table}[H]
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    \multicolumn{2}{|l|}{Models}      & Without Mislabelled Data & With Mislabelled Data \\ \hline
+    Base Model & logistic\_regression & 0.899142                 & 0.863002              \\ \hline
+    Base Model & decision\_tree       & 0.856739                 & 0.620582              \\ \hline
+    Ensemble   & Random\_forest       & 0.964156                 & 0.96224               \\ \hline
+    Ensemble   & Ada Boost            & 0.718159                 & 0.78974               \\ \hline
+    Ensemble   & XGBoost              & 0.972569                 & 0.948439              \\ \hline
+    \end{tabular}
+\end{table}
+
 \subsection{The CIFAR-10 dataset}
 The CIFAR-10 dataset consists of 60000 32x32 colour images in 10 classes, with 6000 images per class. There are 50000 training images and 10000 test images.
 
@@ -230,7 +233,7 @@ Here are the classes in the dataset, as well as 10 random images from each:
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth/2]{report-resources/cifar-10-images/show_labels.png}
-    \caption{CFAR10 data example}
+    \caption{CFAR10 data example \cite{enwiki:1014793182}}
 \end{figure}
 
 CFAR10 is a more complicated dataset, and we will be using the CNN for the feature extraction. 
@@ -267,6 +270,21 @@ We applied 30\% of mislabeled data.
         0.7371853465743461 &       0.7546625150853542  \\
     \end{tabular}
 \end{table}
+
+
+\subsubsection{Aggregated View}
+
+\begin{table}[H]
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    \multicolumn{2}{|l|}{Models}     & Without Mislabelled Data & With Mislabelled Data \\ \hline
+    Base Model & CNN                 & 0.7885768705224767       & 0.7371853465743461    \\ \hline
+    Ensemble   & CNN+ Random\_forest & 0.8059692064910149       & 0.7546625150853542    \\ \hline
+    \end{tabular}
+\end{table}
+\nocite{*}
+
+
 \bibliographystyle{IEEEtran}
 \bibliography{report}
 
