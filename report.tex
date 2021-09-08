@@ -41,13 +41,17 @@ However in real life high quality data is hard to obtain - with the ever increas
 \section{Label noise in ML}
 
 Dataset noise can be either feature noise or label noise. Considering the relatively very high impact of label noise, we will focus on understanding its impacts.
+Researchers 
+Some research \cite{rolnick_veit_belongie_shavit_2018} has shown that ML systems can generalize and behave well even when trained with massive mislabeled data. 
 
-Some research \cite{rolnick_veit_belongie_shavit_2018} has shown that ML systems can generalize and behave well even when trained with massive mislabeled data, but under certain specific circumstances:
+In particular, ML systems are robust with label noise dependent on geospatial proximity, or geospatial label noise \cite{frank_rebbapragada_bialas_oommen_havens_2017}. 
+
+However the ML systems' performance may be penalized under certain specific circumstances:
 
 \begin{itemize}
     \item The ML system must have a large enough parameter set to manage the complexity of the image classification task.  
     \item The training dataset must be very large – large enough to include many properly labeled examples, even if most of the training data is mislabeled. With enough good training samples, the ML system can learn accurate classification by finding the ‘signal’ buried in the label noise.
-    \item The mislabeling is random and does not form a pattern of its own
+    \item The mislabeling is random and does not form a pattern of its own \cite{noisyLabel_2021}
 \end{itemize}
 
 However most ML models face challenges that make label noise a sufficiently big problem. These pose  complications such as:
@@ -68,7 +72,7 @@ It has already been established that Ensemble Machine Learning improves accuracy
 
 The premise of using ensemble-based decision systems in our daily lives is fundamentally not different from their use in computational intelligence. We consult with others before making a decision often because of the variability in the past record and accuracy of any of the individual decision-makers \cite{martin_2018}.
 
-Ensemble method is the machine learning technique that involves combining several base models to create a better predictive model. Idea is that accuracy of the ensemble model is much better than the individual learner models. By using ensemble methods we aim to gain:
+Ensemble method is the machine learning technique that involves combining several base models to create a better predictive model \cite{Wikipedia_2021_ensemble} \cite{Zhang2012EnsembleML}. Idea is that accuracy of the ensemble model is much better than the individual learner models. By using ensemble methods we aim to gain:
 
 
 \begin{itemize}
@@ -84,9 +88,9 @@ Popular ensemble learning models include
 \begin{itemize}
     \item Random Forest: Selecting subset of traning data and features and build decision trees. 
     \item Bagging: Random sample of data in a training set is selected with replacement
-    \item Boosting: Building models in sequence, and minimizing the errors by combining a set of weak learners into a strong learners. 
+    \item Boosting: Building models in sequence, and minimizing the errors by combining a set of weak learners into a strong learners \cite{wikipedia_2021}. 
     \item Gradient Boosting: generating a prediction model from an ensemble of weak models in sequence (typically decision trees)
-    \item XGBoost: regularizing gradient boosting \cite{enwiki:1035329027}
+    \item XGBoost: regularizing gradient boosting \cite{enwiki:1035329027} \cite{chen_guestrin_2016}
 \end{itemize}
 
 
@@ -152,7 +156,7 @@ Gradient boosting does not modify the sample distribution as weak learners train
 
 Xtreme gradient boosting or XGB is a decision-tree-based ensemble Machine Learning algorithm that uses a gradient boosting framework. XGBoost is basically designed to enhance the performance and speed of a Machine Learning model. In prediction problems involving unstructured data (images, text, etc.), artificial neural networks tend to outperform all other algorithms or frameworks \cite{mujtaba_2021}. Like gradient boosting XGBoost also handles missing values in the dataset.  
 
-A generic unregularized xgboost algorithm is described clearly in \cite{enwiki:1035329027}
+A generic unregularized xgboost algorithm is described clearly in \cite{enwiki:1035329027} and \cite{morde_2019}. 
 
 \section{Objectives of this Paper}
 
@@ -164,7 +168,7 @@ We will be sourcing our datasets from publicly available standard datasets (MNIS
 
 \section{Experiment}
 
-\subsection{MINST Dataset}
+\subsection{MINST Dataset \cite{enwiki:1039756601}}
 
 The MNIST database of handwritten digits, available from this page, has a training set of 60,000 examples, and a test set of 10,000 examples. 
 
@@ -282,7 +286,7 @@ We applied 30\% of mislabeled data.
     Ensemble   & CNN+ Random\_forest & 0.8059692064910149       & 0.7546625150853542    \\ \hline
     \end{tabular}
 \end{table}
-\nocite{*}
+% \nocite{*}
 
 
 \bibliographystyle{IEEEtran}
