@@ -105,6 +105,7 @@ cnn_accuracy = accuracy_score(np.argmax(test_labels, axis=1), np.array(pred_clas
 print("cnn_f1_score: " + str(cnn_f1_score))
 print("cnn_accuracy: " + str(cnn_accuracy))
 
+# using the features extracted from the CNN and train the Random Forest model
 
 from keras.models import Model
 X_for_RF = feature_extractor.predict(train_images) #This is out X input to RF

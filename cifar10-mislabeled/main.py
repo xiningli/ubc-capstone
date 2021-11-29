@@ -110,3 +110,33 @@ history = cnn_model.fit(train_images, train_labels, batch_size=64, epochs=10,
 
 
 
+pred = cnn_model.predict(test_images)
+print(pred)
+# Converting the predictions into label index 
+pred_classes = np.argmax(pred, axis=1)
+print(pred_classes)
+
+from sklearn.metrics import f1_score
+from sklearn.metrics import accuracy_score
+cnn_f1_score = f1_score(np.argmax(test_labels, axis=1), np.array(pred_classes), average='weighted')
+cnn_accuracy = accuracy_score(np.argmax(test_labels, axis=1), np.array(pred_classes))
+
+print("cnn_f1_score: " + str(cnn_f1_score))
+print("cnn_accuracy: " + str(cnn_accuracy))
+
+# using the features extracted from the CNN and train the Random Forest model
+
+from keras.models import Model
+X_for_RF = feature_extractor.predict(train_images) #This is out X input to RF
+from sklearn.ensemble import RandomForestClassifier
+rf = RandomForestClassifier(n_jobs=-1)
+rf.fit(X_for_RF, np.argmax(train_labels, axis=1)) #For sklearn no one hot encoding
+X_test_feature = feature_extractor.predict(test_images)
+prediction_RF = rf.predict(X_test_feature)
+from sklearn.metrics import f1_score
+cnn_rf_f1=f1_score(np.argmax(test_labels, axis=1), prediction_RF, average='weighted')
+cnn_rf_accuracy=accuracy_score(np.argmax(test_labels, axis=1), prediction_RF)
+
+print("cnn_rf_f1_score: " + str(cnn_rf_f1))
+print("cnn_rf_accuracy: " + str(cnn_rf_accuracy))
+
