@@ -13,19 +13,26 @@ import os
 from sklearn.metrics import f1_score
 from sklearn import tree
 
+# getting the data
+
 dirname = os.path.dirname(__file__)
 os.makedirs(os.path.join(dirname, "../report-resources/minst"), exist_ok=True)
 train = pd.read_csv(os.path.join(dirname, "../all-data/minst/train.csv"))
 y_train, x_train = train.label.values, train.drop("label", axis=1).values
+
+# plot the sample image
+
 plt.imshow(x_train[0].reshape(28, 28), interpolation="gaussian")
 
 
 plt.savefig(os.path.join(dirname, "../report-resources/minst/simple-minst-sample-1.pdf"))  
 
 
+# doing the training and validation split
+
 x_train, x_validate, y_train, y_validate = train_test_split(x_train, y_train, random_state=1643)
 
-# Let's first fit simple classifiers and observe their performance.
+# fit LogisticRegression classifiers and observe their performance without mis-labeling.
 
 lg_clf = LogisticRegression(solver='lbfgs', max_iter=1000)
 lg_clf.fit(x_train, y_train)
@@ -36,6 +43,8 @@ logistic_regression_f1_score = f1_score(
     average='weighted')
 print(logistic_regression_f1_score)
 
+# fit DecisionTreeClassifier classifiers and observe their performance without mis-labeling.
+
 decision_tree_clf = tree.DecisionTreeClassifier()
 decision_tree_clf.fit(x_train, y_train)
 decision_tree_validate_predict = decision_tree_clf.predict(x_validate)
@@ -44,6 +53,8 @@ decision_tree_f1_score = f1_score(
     decision_tree_validate_predict, 
     average='weighted')
 print(decision_tree_f1_score)
+
+# fit RandomForestClassifier classifiers and observe their performance without mis-labeling.
 
 random_forest_clf = RandomForestClassifier(n_jobs=-1)
 random_forest_clf.fit(x_train, y_train)
@@ -54,12 +65,16 @@ random_forest_f1_score = f1_score(
     average='weighted')
 print(random_forest_f1_score)
 
+# fit AdaBoostClassifier classifiers and observe their performance without mis-labeling.
+
 from sklearn.ensemble import AdaBoostClassifier
 ada_clf = AdaBoostClassifier(random_state=0)
 ada_clf.fit(x_train, y_train)
 ada_validate_predict = ada_clf.predict(x_validate)
 ada_f1_score = f1_score(y_validate, ada_validate_predict, average='weighted')
 print(ada_f1_score)
+
+# fit XGBRegressor classifiers and observe their performance without mis-labeling.
 
 import xgboost as xgb
 xgb_clf = xgb.XGBRegressor(objective="multi:softmax", num_class=10, random_state=42)
@@ -76,6 +91,8 @@ simple_comparison_result = pd.DataFrame(dict(
     xgb = [xgb_f1_score]
     ))
 
+# plotting the f1 scores of all model performance without mis-labeling.
+
 with open(os.path.join(dirname, "../report-resources/minst/f1_scores.tex"), 'w') as f:
     print(simple_comparison_result.to_latex(index=False), file=f)
 
@@ -90,6 +107,8 @@ for i in range(len(y_train)):
 print("miss labeled count")
 print(count)
 
+# fit LogisticRegression classifiers and observe their performance with mis-labeling.
+
 lg_clf_misslabeled = LogisticRegression(solver='lbfgs', max_iter=1000)
 lg_clf_misslabeled.fit(x_train, y_train_miss_label)
 logistic_regression_misslabeled_validate_predict = lg_clf_misslabeled.predict(x_validate)
@@ -97,6 +116,9 @@ logistic_regression_f1_score_misslabeled = f1_score(y_validate,
                                         logistic_regression_misslabeled_validate_predict, 
                                         average='weighted')
 print(logistic_regression_f1_score_misslabeled)
+
+# fit DecisionTreeClassifier classifiers and observe their performance with mis-labeling.
+
 
 decision_tree_clf_misslabeled = tree.DecisionTreeClassifier()
 decision_tree_clf_misslabeled.fit(x_train, y_train_miss_label)
@@ -106,6 +128,9 @@ decision_tree_f1_score_misslabeled = f1_score(y_validate,
                                   average='weighted')
 print(decision_tree_f1_score_misslabeled)
 
+# fit RandomForestClassifier classifiers and observe their performance with mis-labeling.
+
+
 random_forest_clf_misslabeled = RandomForestClassifier(n_jobs=-1)
 random_forest_clf_misslabeled.fit(x_train, y_train_miss_label)
 random_forest_misslabeled_validate_predict = random_forest_clf_misslabeled.predict(x_validate)
@@ -113,6 +138,9 @@ random_forest_misslabeled_f1_score = f1_score(y_validate,
                                               random_forest_misslabeled_validate_predict, 
                                               average='weighted')
 print(random_forest_misslabeled_f1_score)
+
+# fit XGBRegressor classifiers and observe their performance with mis-labeling.
+
 
 import xgboost as xgb
 xgb_clf_misslabeled = xgb.XGBRegressor(objective="multi:softmax", 
@@ -123,6 +151,9 @@ xgb_f1_score_misslabeled = f1_score(y_validate,
     xgb_validate_predict_misslabeled, 
     average='weighted')
 print(xgb_f1_score_misslabeled)
+
+# fit AdaBoostClassifier classifiers and observe their performance with mis-labeling.
+
 
 from sklearn.ensemble import AdaBoostClassifier
 ada_clf_misslabeled = AdaBoostClassifier(random_state=0)
