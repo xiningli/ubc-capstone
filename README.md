@@ -1,7 +1,30 @@
-To generate report as fresh run
+  MEL DSS Capstone Project
+=============================
+By 
+Xining Li () () &  Debashis Kayal (12326609) (debkayal@student.ubc.ca)
 
-```
-./generate_reports.py
-```
+Project Brief:
+================================
 
-After this, please use corresponding editors for latex editing. 
+
+
+
+
+
+Steps To Execute The Code
+=================================
+
+
+
+
+
+Additional Notes
+==================================
+Code File Name:
+Brief Description:
+
+
+
+
+
+
