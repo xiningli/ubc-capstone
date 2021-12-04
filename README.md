@@ -1,7 +1,31 @@
-To generate report as fresh run
+ Faulty-training-data Resiliency in Machine Learning Models using Ensemble Techniques 
+=====================================================================================
+By 
+Xining Li () () &  Debashis Kayal (12326609) (debkayal@student.ubc.ca)
+-----------------------------------------------------------------------
 
-```
-./generate_reports.py
-```
+Project Brief:
+---------------
 
-After this, please use corresponding editors for latex editing. 
+
+
+
+
+
+Steps To Execute The Code:
+--------------------------- 
+
+
+
+
+
+Additional Notes:
+--------------------
+1) Code File Name: Brief Description
+
+
+
+
+
+
+
