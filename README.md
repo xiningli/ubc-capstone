@@ -14,6 +14,7 @@ Steps To Execute The Code:
 --------------------------- 
 
 ``` shell
+mkdir all-data
 wget -O all-data/minst.zip https://drive.google.com/u/0/uc\?id\=1b1-wmx02a5_5bWxXCNDOKwyhTJq0LnLM\&export\=download
 
 unzip all-data/minst.zip -d all-data/minst
