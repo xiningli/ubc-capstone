@@ -29,8 +29,8 @@ for i in range(9):
 pyplot.show()
 
 
-# one hot encode target values
-from keras.utils import to_categorical
+# one hot encode target values using tensorflow keras package instead of keras package
+from tensorflow.keras.utils import to_categorical
 
 # Converting the pixels data to float type
 train_images = train_images.astype('float32')

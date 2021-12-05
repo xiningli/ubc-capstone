@@ -37,14 +37,14 @@ Pre-requisites: python3.8, virtualenv, pip3
 
 Note: The resolve dependencies shell will pull in  all required python libraries including some key libraries required to run our ml code such as: numpy,scikit-learn,matplotlib,pandas,xgboost,keras,tensorflow. Also it might take a while to complete.
 
-5. Runing the shell for MNIST dataset
+5. Experiment #1: Runing the shell for MNIST dataset
 (venv) user@machine-os:/path/<gitrepofolder>/ubc-capstone$sh run-minst.sh
 
 Runing the shell for WINE dataset
 (venv) user@machine-os:/path/<gitrepofolder>/ubc-capstone$sh run-wine.sh
 
 
-Runing the shell for MNIST dataset
+Experiment #2: Runing the shell for Experiment #2. Pulls the CIFAR dataset (from  https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz)
 (venv) user@machine-os:/path/<gitrepofolder>/ubc-capstone$sh run-cifar.sh
 
 ```
