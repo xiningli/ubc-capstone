@@ -12,9 +12,8 @@ This project involves an empirical analysis of ensemble learning approaches by s
 
 Steps To Execute The Code:
 --------------------------- 
-
-1. Clone the git-repo
 ``` shell
+1. Clone the git-repo
 $ git clone https://github.com/xiningli/ubc-capstone.git 
 The git clone will create a folder called "ubc-capstone"
 
