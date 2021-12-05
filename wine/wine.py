@@ -25,7 +25,7 @@ def do_miss_label(y_train_labels, miss_labeled_ratio):
         y_train_copy[misslabeled_index] = random.randrange(0,all_labels_count)
     return y_train_copy
 
-train = pd.read_csv("all-data/wine/wine.csv")
+train = pd.read_csv("wine/wine.csv")
 y_train, x_train = train.Type.values, train.drop("Type", axis=1).values
 x_train, x_validate, y_train, y_validate = train_test_split(x_train, y_train)
 
