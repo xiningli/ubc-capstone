@@ -55,9 +55,13 @@ Additional Notes:
 --------------------
 1) Code File Name: Brief Description
 
+wine/wine.py
+minst/main.py
+cifar10/main.py
+cifar10-mislabeled/main.py
 
-
-
-
+run-cifar.sh
+run-minst.sh
+run-wine.sh
 
 
